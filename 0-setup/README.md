@@ -1,7 +1,7 @@
 # Exercises 0 - Setup
 
 ## Prerequisites
-- Ubuntu 22.04
+- Ubuntu 22.04 / 24.04
 - Intel or AMD processor (with x64 processor architecture). This is the reason why the Docker container won't work 
 directly for example on Apple Silicon, Raspberry or Jetson platforms.
   - For Apple Silicon users, we have added [this tutorial](apple_silicon_UTM_installation_steps.md) for installing 

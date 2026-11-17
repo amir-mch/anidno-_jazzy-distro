@@ -92,7 +92,8 @@ void CustomPlanner::deactivate()
 
 nav_msgs::msg::Path CustomPlanner::createPlan(
   const geometry_msgs::msg::PoseStamped & start,
-  const geometry_msgs::msg::PoseStamped & goal)
+  const geometry_msgs::msg::PoseStamped & goal,
+  std::function<bool()> cancel_checker)
 {
   nav_msgs::msg::Path global_path;
 
@@ -136,6 +137,10 @@ nav_msgs::msg::Path CustomPlanner::createPlan(
   auto start_time = std::chrono::steady_clock::now();
 
   do {
+      if (cancel_checker && cancel_checker()) {
+          RCLCPP_WARN(node_->get_logger(), "Plan request canceled.");
+          return global_path;
+      }
       status = future.wait_for(std::chrono::milliseconds(100));
       if (status == std::future_status::ready) {
           global_path.poses = future.get()->path.poses;

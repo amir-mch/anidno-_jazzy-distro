@@ -103,7 +103,7 @@ Let's take a quick look on how these look like on Andino.
     
     </aside>
    
-    Another way is to check the source code directly in the [Andino GitHub repository](https://github.com/Ekumen-OS/andino_gz/blob/humble/andino_gz/launch/andino_gz.launch.py). You can either check the 
+    Another way is to check the source code directly in the [Andino GitHub repository](https://github.com/Ekumen-OS/andino_gz/blob/jazzy/andino_gz/launch/andino_gz.launch.py). You can either check the 
 code straight in your browser, or clone the package and open it in your favourite IDE.
     
     <img src="images/nav2_bringup.png" alt="Andino nav2 bringup" width="800">
