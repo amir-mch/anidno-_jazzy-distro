@@ -24,7 +24,29 @@ It provides hands-on robotics exercises using the [Andino robot](https://github.
 
 ## Option 1: Run Natively on Ubuntu 24.04 (Without Docker)
 
-If you already have **ROS 2 Jazzy** installed on Ubuntu 24.04:
+### Quick Automated Setup & Launch (Recommended)
+Use the included unified script [`run_native_jazzy.sh`](run_native_jazzy.sh) to automatically install ROS 2 Jazzy (if missing), all required Gazebo Harmonic / Nav2 / SLAM packages, prepare and build `~/andino_ws`, configure `~/.bashrc`, and launch the simulation:
+
+```bash
+git clone https://github.com/amir-mch/anidno-_jazzy-distro.git
+cd anidno-_jazzy-distro
+chmod +x run_native_jazzy.sh
+./run_native_jazzy.sh
+```
+
+#### Available Script Flags
+| Command | Description |
+| :--- | :--- |
+| `./run_native_jazzy.sh` | Full setup (if needed), build `~/andino_ws`, and launch Gazebo + RViz2 |
+| `./run_native_jazzy.sh --setup-only` | Install dependencies, build workspace, and configure `~/.bashrc` without launching |
+| `./run_native_jazzy.sh --launch` | Launch Gazebo + RViz2 directly (assumes workspace is already built) |
+| `./run_native_jazzy.sh --slam` | Launch `slam_toolbox` online async node (run in a 2nd terminal) |
+| `./run_native_jazzy.sh --teleop` | Launch `teleop_twist_keyboard` (run in a 3rd terminal) |
+| `./run_native_jazzy.sh --nav2` | Launch Gazebo + RViz2 with Nav2 autonomous navigation enabled |
+| `./run_native_jazzy.sh --help` | Show usage help |
+
+<details>
+<summary>Manual Native Setup Steps (if you prefer running commands one by one)</summary>
 
 ### 1. Install Required Packages
 ```bash
@@ -66,6 +88,7 @@ rosdep install --from-paths src --ignore-src -r -y --rosdistro jazzy
 colcon build --symlink-install
 source install/setup.bash
 ```
+</details>
 
 ---
 
